@@ -1,0 +1,14 @@
+{
+  "name": "fn-async-cp",
+  "version": "1.0.1",
+  "description": "多个异步函数完成回调",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": ["async","allasync"],
+  "author": "wnls",
+  "license": "ISC"
+}
