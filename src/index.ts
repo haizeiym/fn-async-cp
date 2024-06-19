@@ -1,4 +1,4 @@
-type fp = (args?: any) => any | Promise<any>;
+type fp = Function | ((args?: any) => Promise<any>);
 
 export default class FnAsyncExe {
     private _curCount: number;
