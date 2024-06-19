@@ -1,18 +1,27 @@
-type p = () => Promise<any>;
+type fp = (args?: any) => any | Promise<any>;
+
 export default class FnAsyncExe {
     private _curCount: number;
     private _allCount: number;
 
-    private _endCall: Function | null;
+    private _endCall: fp;
 
-    constructor(allCount: number, endCall: Function) {
+    public get curCount(): number {
+        return this._curCount;
+    }
+
+    public get allCount(): number {
+        return this._allCount;
+    }
+
+    constructor(allCount: number, endCall: fp) {
         this._curCount = 0;
         this._allCount = allCount;
         this._endCall = endCall;
     }
 
-    public fnExe(fn: Function | p | null = null) {
-        let res = fn && fn();
+    public fnExe(fn?: fp) {
+        let res = fn && fn(this._curCount);
         if (res) {
             if (res instanceof Promise) {
                 res.then(() => {
@@ -36,7 +45,7 @@ export default class FnAsyncExe {
         this._curCount++;
         if (this._curCount === this._allCount) {
             this._curCount = 0;
-            this._endCall && this._endCall();
+            this._endCall();
         }
     }
 }
