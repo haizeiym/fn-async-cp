@@ -24,10 +24,12 @@ export default class FnAsyncExe {
         this._exe();
     }
 
-    public desFn() {
+    public reset() {
         this._curCount = 0;
-        this._allCount = 0;
-        this._endCall = null;
+    }
+
+    public setAllCount(nCount: number) {
+        this._allCount = nCount;
     }
 
     private _exe() {
