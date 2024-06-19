@@ -13,5 +13,9 @@
     "allasync"
   ],
   "author": "wnls",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haizeiym/fn-async-cp.git"
+  }
 }
