@@ -1,6 +1,6 @@
 type fp = Function | ((args?: any) => Promise<any>);
 
-export default class FnAsyncExe {
+export default class FnAsync {
     private _curCount: number;
     private _allCount: number;
 
