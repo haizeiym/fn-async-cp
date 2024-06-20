@@ -1,23 +1,27 @@
-type fp = Function | ((args?: any) => Promise<any>);
+type fp = Function | ((args?: any) => Promise<any>) | undefined;
 
 export default class FnAsync {
     private _curCount: number;
-    private _allCount: number;
+    private _allCount: number | undefined;
 
     private _endCall: fp;
+
+    public get allCount(): number | undefined {
+        return this._allCount;
+    }
+
+    public set allCount(value: number) {
+        this._allCount = value;
+    }
 
     public get curCount(): number {
         return this._curCount;
     }
 
-    public get allCount(): number {
-        return this._allCount;
-    }
-
-    constructor(allCount: number, endCall: fp) {
+    constructor(a1?: fp, a2?: number) {
         this._curCount = 0;
-        this._allCount = allCount;
-        this._endCall = endCall;
+        this._endCall = a1;
+        this._allCount = a2;
     }
 
     public fnExe(fn?: fp) {
@@ -33,19 +37,15 @@ export default class FnAsync {
         this._exe();
     }
 
-    public reset() {
-        this._curCount = 0;
-    }
+    public reset = () => this._curCount = 0;
 
-    public setAllCount(nCount: number) {
-        this._allCount = nCount;
-    }
+    public setEndCall = (endCall: fp) => this._endCall = endCall;
 
     private _exe() {
         this._curCount++;
         if (this._curCount === this._allCount) {
             this._curCount = 0;
-            this._endCall();
+            this._endCall && this._endCall();
         }
     }
 }
