@@ -1,4 +1,4 @@
-type fp = Function | ((args?: any) => Promise<any>) | undefined;
+type fp = Function | undefined | null;
 
 export default class FnAsync {
     private _curCount: number;
