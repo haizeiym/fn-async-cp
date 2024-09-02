@@ -18,6 +18,9 @@
     "type": "git",
     "url": "https://github.com/haizeiym/fn-async-cp.git"
   },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
   "files": [
     "dist",
     "src",
