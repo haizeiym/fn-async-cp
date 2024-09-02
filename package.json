@@ -17,5 +17,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/haizeiym/fn-async-cp.git"
-  }
+  },
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "package-lock.json",
+    "README.md"
+  ]
 }
