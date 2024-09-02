@@ -4,6 +4,8 @@
   "description": "多个异步函数完成回调",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
+  "module": "ES6",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
