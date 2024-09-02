@@ -1,6 +1,6 @@
 {
   "name": "fn-async-cp",
-  "version": "1.0.12",
+  "version": "2.0.0",
   "description": "多个异步函数完成回调",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
