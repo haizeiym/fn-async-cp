@@ -1,33 +1,70 @@
-type fp = Function | undefined | null;
+type AsyncFunction = (() => Promise<void>) | (() => void);
+type CallbackFunction = (count: number) => Promise<void> | void | undefined | null;
 
 export default class FnAsync {
-    public curCount: number = 0;
-    public allCount: number = 0;
+    private readonly _initialCount: number = 0;
+    private _curCount: number = this._initialCount;
+    private _endCall?: AsyncFunction;
 
-    private _endCall: fp;
+    constructor(public readonly allCount: number = 0) {}
 
-    public fnExe(fn?: fp) {
-        let res = fn && fn(this.curCount);
-        if (res) {
-            if (res instanceof Promise) {
-                res.then(() => {
-                    this._exe();
-                });
-                return;
-            }
+    /**
+     * 执行传入的函数，并在适当时机触发计数器
+     * @param fn 要执行的回调函数
+     */
+    public async fnExe(fn?: CallbackFunction): Promise<void> {
+        if (!fn) {
+            this._exe();
+            return;
         }
+
+        const result = fn(this._curCount);
+        if (result instanceof Promise) {
+            await result.catch(error => {
+                console.error('Error in async callback:', error);
+            });
+        }
+        
         this._exe();
     }
 
-    public reset = () => this.curCount = 0;
+    /**
+     * 重置计数器到初始状态
+     */
+    public reset = (): void => {
+        this._curCount = this._initialCount;
+    }
 
-    public setEndCall = (endCall: fp) => this._endCall = endCall;
+    /**
+     * 设置结束回调函数
+     * @param endCall 结束时要调用的函数
+     */
+    public setEndCall = (endCall: AsyncFunction): void => {
+        this._endCall = endCall;
+    }
 
-    private _exe() {
-        this.curCount++;
-        if (this.curCount === this.allCount) {
-            this.curCount = 0;
-            this._endCall && this._endCall();
+    /**
+     * 内部执行函数，处理计数逻辑
+     */
+    private _exe(): void {
+        this._curCount++;
+        if (this._curCount === this.allCount) {
+            this._curCount = this._initialCount;
+            this._endCall?.();
         }
+    }
+
+    /**
+     * 获取当前计数
+     */
+    public get curCount(): number {
+        return this._curCount;
+    }
+
+    /**
+     * 设置当前计数
+     */
+    private set curCount(value: number) {
+        this._curCount = value;
     }
 }

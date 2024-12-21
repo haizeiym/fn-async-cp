@@ -1,33 +1,36 @@
 {
-  "name": "fn-async-cp",
-  "version": "2.0.2",
-  "description": "多个异步函数完成回调",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "module": "ES6",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
-  },
-  "keywords": [
-    "async",
-    "allasync"
-  ],
-  "author": "wnls",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/haizeiym/fn-async-cp.git"
-  },
-  "devDependencies": {
-    "typescript": "^4.5.5"
+  "name": "fn-async",
+  "version": "1.0.0",
+  "description": "Async function execution controller",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
   },
   "files": [
-    "dist",
-    "src",
-    "package.json",
-    "package-lock.json",
-    "README.md"
-  ]
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:types",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:types": "tsc -p tsconfig.types.json",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "cocos",
+    "async"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^5.0.10",
+    "typescript": "^4.5.5"
+  },
+  "type": "module"
 }
