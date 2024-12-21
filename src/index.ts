@@ -4,9 +4,31 @@ type CallbackFunction = (count: number) => Promise<void> | void | undefined | nu
 export default class FnAsync {
     private readonly _initialCount: number = 0;
     private _curCount: number = this._initialCount;
+    private _allCount: number = 0;
     private _endCall?: AsyncFunction;
 
-    constructor(public readonly allCount: number = 0) {}
+    constructor(allCount: number = 0) {
+        this.allCount = allCount;
+    }
+
+    /**
+     * 获取总计数
+     */
+    public get allCount(): number {
+        return this._allCount;
+    }
+
+    /**
+     * 设置总计数
+     */
+    public set allCount(count: number) {
+        if (count < 0) {
+            console.warn('allCount cannot be negative, setting to 0');
+            this._allCount = 0;
+            return;
+        }
+        this._allCount = count;
+    }
 
     /**
      * 执行传入的函数，并在适当时机触发计数器
@@ -48,7 +70,7 @@ export default class FnAsync {
      */
     private _exe(): void {
         this._curCount++;
-        if (this._curCount === this.allCount) {
+        if (this._curCount === this._allCount) {
             this._curCount = this._initialCount;
             this._endCall?.();
         }

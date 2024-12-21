@@ -1,5 +1,5 @@
 {
-  "name": "fn-async",
+  "name": "fn-async-cp",
   "version": "3.0.0",
   "description": "Async function execution controller",
   "main": "./dist/cjs/index.js",
