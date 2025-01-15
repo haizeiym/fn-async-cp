@@ -30,4 +30,4 @@ _fnAsync.fnExe();
 ```
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=tabbyml/tabby&type=Date)](https://star-history.com/#tabbyml/tabby&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=haizeiym/fn-async-cp&type=Date)](https://star-history.com/#haizeiym/fn-async-cp&Date)
