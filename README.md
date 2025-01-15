@@ -28,3 +28,6 @@ _fnAsync.fnExe();
 
 
 ```
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=tabbyml/tabby&type=Date)](https://star-history.com/#tabbyml/tabby&Date)
